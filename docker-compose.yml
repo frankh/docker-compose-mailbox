@@ -7,15 +7,11 @@ postfix:
   links:
     - mysql
     - dovecot
-    - opendkim
 
 dovecot:
   build: dovecot
   links:
     - mysql
-
-opendkim:
-  build: opendkim
 
 vimbadmin:
   build: vimbadmin
@@ -30,8 +26,8 @@ roundcube:
 mysql:
   build: mysql
   volumes:
-    - "backup:/backup"
-    - "mysql:/var/lib/mysql"
+    - "data/backup:/backup"
+    - "data/mysql:/var/lib/mysql"
   ports:
     - "3306"
 

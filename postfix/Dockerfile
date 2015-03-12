@@ -1,0 +1,1 @@
+FROM phusion/baseimage:latest
