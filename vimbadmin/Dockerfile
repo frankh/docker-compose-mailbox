@@ -12,10 +12,10 @@ RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 
 RUN mkdir -p /var/www
-ENV install_path /var/www/vimbadmin
+ENV vimbadmin_install_path /var/www/vimbadmin
 
-RUN git clone https://github.com/opensolutions/ViMbAdmin.git ${install_path}
-RUN cd ${install_path} && composer install --dev
+RUN git clone https://github.com/opensolutions/ViMbAdmin.git ${vimbadmin_install_path}
+RUN cd ${vimbadmin_install_path} && git checkout 3.0.11 && composer install
 #TODO remove --dev
 
 RUN apt-get install -y mysql-client-core-5.6
@@ -36,15 +36,22 @@ RUN mkdir /etc/service/php-fpm && \
     mv php-fpm.sh /etc/service/php-fpm/run && \
     chmod +x /etc/service/php-fpm/run
 
-ADD setup_and_init.sh .
-RUN chmod +x setup_and_init.sh
+ENV roundcube_install_path /var/www/roundcube
+
+RUN git clone https://github.com/roundcube/roundcubemail.git ${roundcube_install_path}
+RUN cd ${roundcube_install_path} && \
+    git checkout v0.9.5 && \
+    mv ${roundcube_install_path}/composer.json-dist ${roundcube_install_path}/composer.json && \
+    composer install
 
 RUN chown -R www-data:www-data /var/www/
 
-ADD vimbadmin/application.ini ${install_path}/application/configs/application.ini
+ADD setup_and_init.sh .
+RUN chmod +x setup_and_init.sh
+ADD vimbadmin/application.ini ${vimbadmin_install_path}/application/configs/application.ini
 ADD vimbadmin/db_init.sh .
 ADD vimbadmin/db_setup.sql .
-RUN mv ${install_path}/public/.htaccess.dist ${install_path}/public/.htaccess
+RUN mv ${vimbadmin_install_path}/public/.htaccess.dist ${vimbadmin_install_path}/public/.htaccess
 
 CMD ["./setup_and_init.sh"]
 EXPOSE 80

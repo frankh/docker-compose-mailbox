@@ -18,12 +18,12 @@ mysql -u root -ppassword -h mysql vimbadmin -e "" &> /dev/null
 if [ $? -eq 0 ]; then
   echo "Using existing DB"
 else
-  echo "Creating DB and Superuse"
+  echo "Creating DB and Superuser"
   mysql -u root -ppassword -h mysql < db_setup.sql &> /dev/null && \
   rm db_setup.sql
 
   HASH_PASS=`php -r "echo password_hash('$VIMBADMIN_SUPERUSER_PASSWORD', PASSWORD_DEFAULT);"`
-  cd $install_path && ./bin/doctrine2-cli.php orm:schema-tool:create && \
+  cd $vimbadmin_install_path && ./bin/doctrine2-cli.php orm:schema-tool:create && \
   mysql -u vimbadmin -ppassword -h mysql vimbadmin -e \
     "INSERT INTO admin (username, password, super, active, created, modified) VALUES ('$VIMBADMIN_SUPERUSER', '$HASH_PASS', 1, 1, NOW(), NOW())" && \
   echo "Setup completed successfully"
