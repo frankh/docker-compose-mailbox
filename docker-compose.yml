@@ -1,40 +1,42 @@
-postfix:
-  build: postfix
-  ports:
-    - "25:25"
-    - "993:993"
-    - "587:587"
-  links:
-    - mysql
-    - dovecot
-
-dovecot:
-  build: dovecot
-  links:
-    - mysql
-
-vimbadmin:
-  build: vimbadmin
-  links:
-    - mysql
-
-roundcube:
-  build: roundcube
-  links:
-    - mysql
-
 mysql:
   build: mysql
-  volumes:
-    - "data/backup:/backup"
-    - "data/mysql:/var/lib/mysql"
+  env_file:
+    - settings.env
+  # volumes:
+  #   - "data/backup:/backup"
+  #   - "data/mysql:/var/lib/mysql"
   ports:
     - "3306"
 
-webserver:
-  build: webserver
+
+vimbadmin:
+  build: vimbadmin
+  env_file:
+    - settings.env
   ports:
     - "80:80"
   links:
-    - vimbadmin
-    - roundcube
+    - mysql
+
+# postfix:
+#   build: postfix
+#   ports:
+#     - "25:25"
+#     - "993:993"
+#     - "587:587"
+#   links:
+#     - mysql
+#     - dovecot
+
+# dovecot:
+#   build: dovecot
+#   links:
+#     - mysql
+
+# roundcube:
+#   build: roundcube
+#   links:
+#     - mysql
+
+# memcache:
+#   build: memcache

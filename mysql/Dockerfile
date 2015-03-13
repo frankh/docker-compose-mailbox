@@ -1,3 +1,6 @@
-FROM dockerfile/mariadb
+FROM mysql
 
-CMD ["mysqld_safe"]
+ENV MYSQL_ROOT_PASSWORD password
+
+EXPOSE 3306
+CMD ["mysqld"]
