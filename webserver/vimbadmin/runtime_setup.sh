@@ -1,7 +1,9 @@
 #!/bin/bash
+
+# DB SETUP
 MAX_TIMEOUTS=0
 
-while [ $MAX_TIMEOUTS -lt 10 ]; do
+while [ $MAX_TIMEOUTS -lt 30 ]; do
   mysql -u root -ppassword -h mysql -e "" &> /dev/null
   if [ $? -eq 0 ]; then
     break
@@ -9,7 +11,7 @@ while [ $MAX_TIMEOUTS -lt 10 ]; do
     sleep 1
   fi
   let MAX_TIMEOUTS=MAX_TIMEOUTS+1
-  if [ $MAX_TIMEOUTS -gt 9 ]; then
+  if [ $MAX_TIMEOUTS -gt 29 ]; then
     echo "ERROR: Could never connect to database $MAX_TIMEOUTS"
   fi
 done
@@ -19,12 +21,12 @@ if [ $? -eq 0 ]; then
   echo "Using existing DB"
 else
   echo "Creating DB and Superuser"
-  mysql -u root -ppassword -h mysql < db_setup.sql &> /dev/null && \
-  rm db_setup.sql
+  mysql -u root -ppassword -h mysql < /tmp/vimbadmin/db_setup.sql &> /dev/null && \
 
   HASH_PASS=`php -r "echo password_hash('$VIMBADMIN_SUPERUSER_PASSWORD', PASSWORD_DEFAULT);"`
   cd $vimbadmin_install_path && ./bin/doctrine2-cli.php orm:schema-tool:create && \
   mysql -u vimbadmin -ppassword -h mysql vimbadmin -e \
     "INSERT INTO admin (username, password, super, active, created, modified) VALUES ('$VIMBADMIN_SUPERUSER', '$HASH_PASS', 1, 1, NOW(), NOW())" && \
-  echo "Setup completed successfully"
+  echo "Vimbadmin setup completed successfully"
 fi
+

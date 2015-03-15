@@ -8,9 +8,8 @@ mysql:
   ports:
     - "3306"
 
-
-vimbadmin:
-  build: vimbadmin
+webserver:
+  build: webserver
   env_file:
     - settings.env
   ports:
@@ -18,15 +17,11 @@ vimbadmin:
   links:
     - mysql
 
-# postfix:
-#   build: postfix
-#   ports:
-#     - "25:25"
-#     - "993:993"
-#     - "587:587"
-#   links:
-#     - mysql
-#     - dovecot
+mail:
+  build: mail
+  links:
+    - mysql
+    # - dovecot
 
 # dovecot:
 #   build: dovecot
