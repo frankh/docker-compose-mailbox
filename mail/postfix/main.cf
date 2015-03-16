@@ -34,8 +34,8 @@ myorigin = %MAIL_DOMAIN%
 # DKIM
 milter_default_action = accept
 milter_protocol = 2
-smtpd_milters = inet:127.0.0.1:8891
-non_smtpd_milters = inet:127.0.0.1:8891
+smtpd_milters = inet:opendkim:8891
+non_smtpd_milters = inet:opendkim:8891
 
 # @TODO - the primaryhosname variable is a test
 # mydestination = localhost localhost.$mydomain

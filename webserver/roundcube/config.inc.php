@@ -93,3 +93,10 @@ $config['mime_param_folding'] = 1;
 // in the session record (and the client cookie if remember password is enabled).
 // please provide a string of exactly 24 chars.
 $config['des_key'] = '%RANDOM_DES_KEY%';
+
+// ----------------------------------
+// MEMCACHE
+// ----------------------------------
+$config['imap_cache'] = 'memcache';
+$config['session_storage'] = 'memcache';
+$rcmail_config['memcache_hosts'] = array('memcache:11211');

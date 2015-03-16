@@ -16,22 +16,23 @@ webserver:
     - "80:80"
   links:
     - mysql
+    - memcache
 
 mail:
   build: mail
   links:
     - mysql
-    # - dovecot
+    - opendkim
 
-# dovecot:
-#   build: dovecot
-#   links:
-#     - mysql
+opendkim:
+  build: opendkim
+  ports:
+    - "8891"
 
 # roundcube:
 #   build: roundcube
 #   links:
 #     - mysql
 
-# memcache:
-#   build: memcache
+memcache:
+  build: memcache
