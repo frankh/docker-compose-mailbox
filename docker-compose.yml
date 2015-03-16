@@ -36,3 +36,5 @@ opendkim:
 
 memcache:
   build: memcache
+  ports:
+    - "11211"
