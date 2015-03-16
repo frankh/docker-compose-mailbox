@@ -46,8 +46,8 @@ RUN git clone https://github.com/roundcube/roundcubemail.git ${roundcube_install
     rm -rf ${roundcube_install_path}/.git
 
 
-ADD setup_and_init.sh .
-RUN chmod +x setup_and_init.sh
+ADD setup_and_init.sh /tmp/setup_and_init.sh
+RUN chmod +x /tmp/setup_and_init.sh
 
 #BEGIN SETUP
 
@@ -63,5 +63,4 @@ RUN cp /tmp/vimbadmin/application.ini ${vimbadmin_install_path}/application/conf
 RUN bash /tmp/roundcube/compiletime_setup.sh && bash /tmp/vimbadmin/compiletime_setup.sh
 
 RUN chown -R www-data:www-data /var/www/
-CMD ["./setup_and_init.sh"]
-EXPOSE 80
+CMD ["/tmp/setup_and_init.sh"]

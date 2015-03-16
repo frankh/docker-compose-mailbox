@@ -1,5 +1,5 @@
 user = vimbadmin
-password = %mysqlvimbadmin%
-hosts = 127.0.0.1
+password = password
+hosts = mysql
 dbname = vimbadmin
 query = SELECT goto FROM alias WHERE address = '%s' AND active = '1'

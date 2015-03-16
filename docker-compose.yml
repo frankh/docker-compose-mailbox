@@ -2,8 +2,8 @@ mysql:
   build: mysql
   env_file:
     - settings.env
-  # volumes:
-  #   - "data/backup:/backup"
+  volumes:
+    - "data/backup:/backup"
   #   - "data/mysql:/var/lib/mysql"
   ports:
     - "3306"
@@ -20,19 +20,22 @@ webserver:
 
 mail:
   build: mail
+  env_file:
+    - settings.env
   links:
     - mysql
     - opendkim
+  volumes:
+    - "data/certs:/etc/certs"
 
 opendkim:
   build: opendkim
+  env_file:
+    - settings.env
   ports:
     - "8891"
-
-# roundcube:
-#   build: roundcube
-#   links:
-#     - mysql
+  volumes:
+    - "data/certs:/etc/certs"
 
 memcache:
   build: memcache
