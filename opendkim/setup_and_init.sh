@@ -11,4 +11,6 @@ if ! [[ -f /etc/certs/dkim.private ]]; then
   echo "Generated keys and DNS settings"
 fi
 
+bash /tmp/runtime_setup.sh
+
 exec /sbin/my_init

@@ -27,6 +27,7 @@ mail:
     - opendkim
   volumes:
     - "data/certs:/etc/certs"
+    - "data/vmail:/var/vmail"
 
 opendkim:
   build: opendkim
