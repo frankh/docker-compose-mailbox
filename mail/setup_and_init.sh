@@ -1,8 +1,6 @@
 #!/bin/bash
-
 bash /tmp/postfix/runtime_setup.sh
 bash /tmp/dovecot/runtime_setup.sh
-
 
 if ! [[ -f /etc/certs/mail.private ]]; then
   echo "Mail cert not found, autogenerating..."
