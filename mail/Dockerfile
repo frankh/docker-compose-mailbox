@@ -11,7 +11,6 @@ RUN mkdir /etc/service/dovecot && \
     mv dovecot.sh /etc/service/dovecot/run && \
     chmod +x /etc/service/dovecot/run
 
-
 RUN groupadd -g 5000 vmail
 RUN useradd -g vmail -u 5000 vmail -d /var/vmail
 

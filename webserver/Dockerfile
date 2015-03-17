@@ -2,18 +2,14 @@ FROM phusion/baseimage:latest
 
 ENV DEBIAN_FRONTEND noninteractive
 
-# vimbadmin dependencies
 RUN apt-get update
-RUN apt-get install -y php5 php5-cgi php5-mcrypt php5-memcache php5-json php5-mysql php-gettext libapache2-mod-php5 git subversion
-RUN apt-get install -y nginx-extras php5-fpm
-RUN apt-get install -y mysql-client-core-5.6
-
+RUN apt-get install -y php5 php5-cgi php5-mcrypt php5-memcache php5-json php5-mysql php-gettext libapache2-mod-php5 \
+                       git subversion nginx-extras php5-fpm mysql-client-core-5.6
 
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 
 RUN mkdir -p /var/www
-ENV vimbadmin_install_path /var/www/vimbadmin
 
 RUN rm /etc/nginx/sites-enabled/default
 ADD nginx/nginx.sh .
@@ -29,7 +25,7 @@ RUN mkdir /etc/service/php-fpm && \
     mv php-fpm.sh /etc/service/php-fpm/run && \
     chmod +x /etc/service/php-fpm/run
 
-
+ENV vimbadmin_install_path /var/www/vimbadmin
 RUN git clone https://github.com/opensolutions/vimbadmin.git ${vimbadmin_install_path} && \
     cd ${vimbadmin_install_path} && \
     git checkout 3.0.11 && \
@@ -37,7 +33,6 @@ RUN git clone https://github.com/opensolutions/vimbadmin.git ${vimbadmin_install
     rm -rf ${vimbadmin_install_path}/.git
 
 ENV roundcube_install_path /var/www/roundcube
-
 RUN git clone https://github.com/roundcube/roundcubemail.git ${roundcube_install_path} && \
     cd ${roundcube_install_path} && \
     git checkout 1.1.0 && \
