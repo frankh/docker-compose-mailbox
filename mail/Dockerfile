@@ -15,7 +15,6 @@ RUN mkdir /etc/service/dovecot && \
 RUN groupadd -g 5000 vmail
 RUN useradd -g vmail -u 5000 vmail -d /var/vmail
 
-ADD settings-copy.env /tmp/settings.env
 ADD setup_and_init.sh /tmp/setup_and_init.sh
 RUN chmod +x /tmp/setup_and_init.sh
 

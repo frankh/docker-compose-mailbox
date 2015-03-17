@@ -56,7 +56,6 @@ RUN useradd -g vmail -u 5000 vmail -d /var/vmail
 
 ADD vimbadmin/ /tmp/vimbadmin
 ADD roundcube/ /tmp/roundcube
-ADD settings-copy.env /tmp/settings.env
 
 RUN mv ${vimbadmin_install_path}/public/.htaccess.dist ${vimbadmin_install_path}/public/.htaccess
 RUN cp /tmp/vimbadmin/vimbadmin.nginx.conf /etc/nginx/sites-enabled/vimbadmin

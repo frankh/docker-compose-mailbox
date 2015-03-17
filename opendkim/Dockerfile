@@ -16,6 +16,5 @@ RUN chmod +x /tmp/setup_and_init.sh
 RUN mkdir -p /etc/ssl/certs
 
 ADD opendkim.conf /etc/opendkim.conf
-ADD settings-copy.env /tmp/settings.env
 
 CMD ["/tmp/setup_and_init.sh"]
