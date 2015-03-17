@@ -79,7 +79,7 @@ $config['imap_auth_type'] = "PLAIN";
 // PLUGINS
 // ----------------------------------
 // List of active plugins (in plugins/ directory)
-$config['plugins'] = array('archive', 'filesystem_attachments', 'hide_blockquote', 'password');
+$config['plugins'] = array('archive', 'filesystem_attachments', 'hide_blockquote');
 
 // the default locale setting (leave empty for auto-detection)
 // RFC1766 formatted language name like en_US, de_DE, de_CH, fr_FR, pt_BR

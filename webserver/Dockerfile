@@ -57,6 +57,9 @@ RUN useradd -g vmail -u 5000 vmail -d /var/vmail
 ADD vimbadmin/ /tmp/vimbadmin
 ADD roundcube/ /tmp/roundcube
 
+# TODO: try and fix roundcube PEAR redeclared bug - in the meantime this fixes it (bug spews an ugly warning)
+RUN rm ${roundcube_install_path}/vendor/pear-pear.php.net/PEAR/PEAR.php
+
 RUN mv ${vimbadmin_install_path}/public/.htaccess.dist ${vimbadmin_install_path}/public/.htaccess
 RUN cp /tmp/vimbadmin/vimbadmin.nginx.conf /etc/nginx/sites-enabled/vimbadmin
 RUN cp /tmp/roundcube/roundcube.nginx.conf /etc/nginx/sites-enabled/roundcube
