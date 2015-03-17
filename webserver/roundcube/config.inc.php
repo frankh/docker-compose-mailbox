@@ -30,11 +30,19 @@ $config['log_driver'] = 'syslog';
 // For example %n = mail.domain.tld, %t = domain.tld
 // WARNING: After hostname change update of mail_host column in users table is
 //          required to match old user data records with the new host.
-$config['default_host'] = 'ssl://mail';
+$config['default_host'] = 'imaps://mail';
 
 // TCP port used for IMAP connections
 $config['default_port'] = 993;
 
+// Validate SSL using our cert as the CA file
+$config['imap_conn_options'] = array(
+ 'ssl'         => array(
+    'verify_peer'  => true,
+    'verify_depth' => 3,
+    'cafile'       => '/etc/certs/mail.cert',
+  ),
+);
 // ----------------------------------
 // SMTP
 // ----------------------------------
@@ -48,7 +56,7 @@ $config['default_port'] = 993;
 // %d - domain (http hostname $_SERVER['HTTP_HOST'] without the first part)
 // %z - IMAP domain (IMAP hostname without the first part)
 // For example %n = mail.domain.tld, %t = domain.tld
-$config['smtp_server'] = 'ssl://mail';
+$config['smtp_server'] = 'tls://mail';
 
 // SMTP port (default is 25; use 587 for STARTTLS or 465 for the
 // deprecated SSL over SMTP (aka SMTPS))
@@ -94,7 +102,6 @@ $config['mime_param_folding'] = 1;
 // in the session record (and the client cookie if remember password is enabled).
 // please provide a string of exactly 24 chars.
 $config['des_key'] = '%RANDOM_DES_KEY%';
-
 // ----------------------------------
 // MEMCACHE
 // ----------------------------------
