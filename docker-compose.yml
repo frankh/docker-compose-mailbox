@@ -1,13 +1,29 @@
-mysql:
-  build: mysql
+mail:
+  build: mail
   env_file:
     - settings.env
+  links:
+    - mysql
+    - opendkim
   volumes:
-    - "data/backup:/backup"
-  #   - "data/mysql:/var/lib/mysql"
+    - "data/certs:/etc/certs"
+  volumes_from:
+    - storagebackup
   ports:
-    - "3306"
+    - "587:587"
+    - "993:993"
+    - "995:995"
 
+opendkim:
+  build: opendkim
+  env_file:
+    - settings.env
+  ports:
+    - "8891"
+  volumes:
+    - "data/certs:/etc/certs"
+
+# If you only want the mail server and no webmail/admin simply remove webserver and memcache
 webserver:
   build: webserver
   env_file:
@@ -23,38 +39,22 @@ webserver:
     - memcache
     - mail
 
-mail:
-  build: mail
-  env_file:
-    - settings.env
-  links:
-    - mysql
-    - opendkim
-  volumes:
-    - "data/certs:/etc/certs"
-  volumes_from:
-    - storagebackup
-  ports:
-    - "25:25"
-    - "465:465"
-    - "587:587"
-    - "993:993"
-    - "995:995"
-
-opendkim:
-  build: opendkim
-  env_file:
-    - settings.env
-  ports:
-    - "8891"
-  volumes:
-    - "data/certs:/etc/certs"
-
 memcache:
   build: memcache
   ports:
     - "11211"
 
+mysql:
+  build: mysql
+  env_file:
+    - settings.env
+  volumes:
+    - "data/backup:/backup"
+  #   - "data/mysql:/var/lib/mysql"
+  ports:
+    - "3306"
+
+# Storage container for vmail that also creates daily backups
 storagebackup:
   build: storagebackup
   env_file:

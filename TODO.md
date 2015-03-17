@@ -1,0 +1,3 @@
+- SSL support for vimbadmin/roundcube
+- fix Failed opening '/var/www/roundcube/vendor/pear-pear.php.net/PEAR/PEAR.php' warning
+  - root cause is PEAR being included twice if this PEAR.php file is not removed
