@@ -11,11 +11,11 @@ RUN groupadd -g 5000 vmail && \
     chown vmail:vmail /var/vmail
 
 ADD vmail.gitignore /tmp/vmail.gitignore
-ADD mysql_backup.sh /etc/cron.hourly/mysql_backup.sh
-ADD vmail_backup.sh /etc/cron.hourly/vmail_backup.sh
+ADD mysql_backup.sh /etc/cron.hourly/mysql_backup
+ADD vmail_backup.sh /etc/cron.hourly/vmail_backup
 
-RUN chmod +x /etc/cron.hourly/mysql_backup.sh && \
-    chmod +x /etc/cron.hourly/vmail_backup.sh
+RUN chmod +x /etc/cron.hourly/mysql_backup && \
+    chmod +x /etc/cron.hourly/vmail_backup
 
 ADD setup_and_init.sh /tmp/setup_and_init.sh
 CMD ["/tmp/setup_and_init.sh"]
