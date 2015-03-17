@@ -63,7 +63,6 @@ RUN cp /tmp/vimbadmin/vimbadmin.nginx.conf /etc/nginx/sites-enabled/vimbadmin
 RUN cp /tmp/roundcube/roundcube.nginx.conf /etc/nginx/sites-enabled/roundcube
 RUN cp /tmp/roundcube/config.inc.php ${roundcube_install_path}/config/config.inc.php
 RUN cp /tmp/vimbadmin/application.ini ${vimbadmin_install_path}/application/configs/application.ini
-RUN bash /tmp/roundcube/compiletime_setup.sh && bash /tmp/vimbadmin/compiletime_setup.sh
 
 RUN chown -R www-data:www-data /var/www/
 CMD ["/tmp/setup_and_init.sh"]

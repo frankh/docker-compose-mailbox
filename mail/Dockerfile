@@ -24,9 +24,7 @@ RUN rm -rf /etc/dovecot/*
 ADD postfix/config/ /etc/postfix/
 ADD dovecot/config/ /etc/dovecot/
 
-ADD dovecot/compiletime_setup.sh /tmp/dovecot/compiletime_setup.sh
-ADD postfix/compiletime_setup.sh /tmp/postfix/compiletime_setup.sh
-RUN bash /tmp/dovecot/compiletime_setup.sh
-RUN bash /tmp/postfix/compiletime_setup.sh
+ADD dovecot/runtime_setup.sh /tmp/dovecot/runtime_setup.sh
+ADD postfix/runtime_setup.sh /tmp/postfix/runtime_setup.sh
 
 CMD ["/tmp/setup_and_init.sh"]

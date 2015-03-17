@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # CONF SETUP
+sed -i -e "s/%ROUNDCUBE_DOMAIN%/${ROUNDCUBE_DOMAIN}/g" /etc/nginx/sites-enabled/roundcube
 sed -i -e "s#%RANDOM_DES_KEY%#`openssl rand -base64 16`#g" ${roundcube_install_path}/config/config.inc.php
 
 # DB SETUP
