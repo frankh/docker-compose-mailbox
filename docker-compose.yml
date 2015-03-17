@@ -17,7 +17,7 @@ webserver:
   volumes:
     - "data/certs:/etc/certs"
   volumes_from:
-    - datacontainer
+    - storagebackup
   links:
     - mysql
     - memcache
@@ -33,7 +33,7 @@ mail:
   volumes:
     - "data/certs:/etc/certs"
   volumes_from:
-    - datacontainer
+    - storagebackup
   ports:
     - "25:25"
     - "465:465"
@@ -55,5 +55,12 @@ memcache:
   ports:
     - "11211"
 
-datacontainer:
-  build: datacontainer
+storagebackup:
+  build: storagebackup
+  env_file:
+    - settings.env
+  links:
+    - mysql
+  volumes:
+    - "/var/vmail"
+    - "data/backup:/backup"
