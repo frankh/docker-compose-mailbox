@@ -1,7 +1,7 @@
 driver = mysql
 
 connect = host=mysql user=vimbadmin password=password dbname=vimbadmin
-default_pass_scheme = MD5
+default_pass_scheme = CRYPT
 
 password_query = SELECT username as user, password as password, \
         homedir AS home, maildir AS mail, \

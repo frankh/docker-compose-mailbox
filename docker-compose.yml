@@ -14,9 +14,14 @@ webserver:
     - settings.env
   ports:
     - "80:80"
+  volumes:
+    - "data/certs:/etc/certs"
+  volumes_from:
+    - datacontainer
   links:
     - mysql
     - memcache
+    - mail
 
 mail:
   build: mail
@@ -27,7 +32,14 @@ mail:
     - opendkim
   volumes:
     - "data/certs:/etc/certs"
-    - "data/vmail:/var/vmail"
+  volumes_from:
+    - datacontainer
+  ports:
+    - "25:25"
+    - "465:465"
+    - "587:587"
+    - "993:993"
+    - "995:995"
 
 opendkim:
   build: opendkim
@@ -42,3 +54,6 @@ memcache:
   build: memcache
   ports:
     - "11211"
+
+datacontainer:
+  build: datacontainer

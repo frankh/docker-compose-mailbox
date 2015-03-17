@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # CONF SETUP
-sed -i -e "s#%RANDOM_DES_KEY%#`openssl rand -base64 24`#g" ${roundcube_install_path}/config/config.inc.php
+sed -i -e "s#%RANDOM_DES_KEY%#`openssl rand -base64 16`#g" ${roundcube_install_path}/config/config.inc.php
 
 # DB SETUP
 MAX_TIMEOUTS=0

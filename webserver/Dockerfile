@@ -51,6 +51,9 @@ RUN chmod +x /tmp/setup_and_init.sh
 
 #BEGIN SETUP
 
+RUN groupadd -g 5000 vmail
+RUN useradd -g vmail -u 5000 vmail -d /var/vmail
+
 ADD vimbadmin/ /tmp/vimbadmin
 ADD roundcube/ /tmp/roundcube
 ADD settings-copy.env /tmp/settings.env

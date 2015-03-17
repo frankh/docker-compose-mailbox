@@ -30,7 +30,7 @@ $config['log_driver'] = 'syslog';
 // For example %n = mail.domain.tld, %t = domain.tld
 // WARNING: After hostname change update of mail_host column in users table is
 //          required to match old user data records with the new host.
-$config['default_host'] = 'ssl://dovecot';
+$config['default_host'] = 'ssl://mail';
 
 // TCP port used for IMAP connections
 $config['default_port'] = 993;
@@ -48,7 +48,7 @@ $config['default_port'] = 993;
 // %d - domain (http hostname $_SERVER['HTTP_HOST'] without the first part)
 // %z - IMAP domain (IMAP hostname without the first part)
 // For example %n = mail.domain.tld, %t = domain.tld
-$config['smtp_server'] = 'ssl://postfix';
+$config['smtp_server'] = 'ssl://mail';
 
 // SMTP port (default is 25; use 587 for STARTTLS or 465 for the
 // deprecated SSL over SMTP (aka SMTPS))
@@ -66,6 +66,7 @@ $config['smtp_pass'] = '%p';
 // PLEASE DO NOT LINK TO THE ROUNDCUBE.NET WEBSITE HERE!
 $config['support_url'] = '';
 
+$config['imap_auth_type'] = "PLAIN";
 // ----------------------------------
 // PLUGINS
 // ----------------------------------
