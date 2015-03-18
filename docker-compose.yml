@@ -10,6 +10,7 @@ mail:
   volumes_from:
     - storagebackup
   ports:
+    - "25:25"
     - "587:587"
     - "993:993"
     - "995:995"
