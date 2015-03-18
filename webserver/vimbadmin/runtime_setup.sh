@@ -4,6 +4,9 @@
 sed -i -e "s/%VIMBADMIN_DOMAIN%/${VIMBADMIN_DOMAIN}/g" /etc/nginx/sites-enabled/vimbadmin
 sed -i -e "s/%VIMBADMIN_REMEMBERME_SALT%/${VIMBADMIN_REMEMBERME_SALT}/g" ${vimbadmin_install_path}/application/configs/application.ini
 sed -i -e "s/%VIMBADMIN_PASSWORD_SALT%/${VIMBADMIN_PASSWORD_SALT}/g" ${vimbadmin_install_path}/application/configs/application.ini
+sed -i -e "s/%VIMBADMIN_DOMAIN%/${VIMBADMIN_DOMAIN}/g" ${vimbadmin_install_path}/application/configs/application.ini
+sed -i -e "s/%VIMBADMIN_SUPERUSER%/${VIMBADMIN_SUPERUSER}/g" ${vimbadmin_install_path}/application/configs/application.ini
+sed -i -e "s/%VIMBADMIN_DOMAIN%/${VIMBADMIN_DOMAIN}/g" ${vimbadmin_install_path}/application/configs/application.ini
 
 # DB SETUP
 MAX_TIMEOUTS=0
