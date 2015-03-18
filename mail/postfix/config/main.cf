@@ -27,7 +27,7 @@ smtpd_tls_loglevel = 1
 smtpd_tls_auth_only = yes
 smtpd_tls_eecdh_grade = strong
 
-myhostname = %MAIL_DOMAIN%
+myhostname = %MAIL_MX_DOMAIN%
 
 myorigin = %MAIL_DOMAIN%
 
