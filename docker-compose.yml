@@ -18,7 +18,7 @@ opendkim:
   build: opendkim
   env_file:
     - settings.env
-  ports:
+  expose:
     - "8891"
   volumes:
     - "data/certs:/etc/certs"
@@ -41,7 +41,7 @@ webserver:
 
 memcache:
   build: memcache
-  ports:
+  expose:
     - "11211"
 
 mysql:
@@ -51,7 +51,7 @@ mysql:
   volumes:
     - "data/backup:/backup"
   #   - "data/mysql:/var/lib/mysql"
-  ports:
+  expose:
     - "3306"
 
 # Storage container for vmail that also creates daily backups
