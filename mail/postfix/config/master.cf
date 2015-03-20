@@ -126,5 +126,5 @@ mailman   unix  -       n       n       -       -       pipe
   flags=FR user=list argv=/usr/lib/mailman/bin/postfix-to-mailman.py
   ${nexthop} ${user}
 spamassassin unix -     n       n       -       -       pipe
-        user=root argv=/usr/bin/spamc -d spamassassin -f -e
+        user=nobody argv=/usr/bin/spamc -d spamassassin -f -e
         /usr/sbin/sendmail -oi -f ${sender} ${recipient}
