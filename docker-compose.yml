@@ -45,6 +45,8 @@ spamassassin:
   build: spamassassin
   expose:
     - "783"
+  links:
+    - mail
 
 memcache:
   build: memcache
