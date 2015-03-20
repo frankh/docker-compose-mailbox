@@ -21,6 +21,10 @@ RUN groupadd spamd && \
     mkdir -p /var/log/spamassassin && \
     chown -R spamd:spamd /var/log/spamassassin
 
+RUN mkdir -p /var/lib/dovecot/sieve/global
+ADD dovecot/dovecot.sieve /var/lib/dovecot/sieve/dovecot.sieve
+RUN sievec /var/lib/dovecot/sieve/dovecot.sieve
+
 ADD setup_and_init.sh /tmp/setup_and_init.sh
 RUN chmod +x /tmp/setup_and_init.sh
 

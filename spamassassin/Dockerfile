@@ -15,4 +15,6 @@ RUN mkdir /etc/service/spamd && \
     mv /tmp/spamd.sh /etc/service/spamd/run && \
     chmod +x /etc/service/spamd/run
 
+ADD local.cf /etc/spamassassin/local.cf
+
 CMD ["/sbin/my_init"]
