@@ -16,6 +16,11 @@ RUN mkdir /etc/service/dovecot && \
 RUN groupadd -g 5000 vmail
 RUN useradd -g vmail -u 5000 vmail -d /var/vmail
 
+RUN groupadd spamd && \
+    useradd -g spamd -s /bin/false -d /var/log/spamassassin spamd && \
+    mkdir -p /var/log/spamassassin && \
+    chown -R spamd:spamd /var/log/spamassassin
+
 ADD setup_and_init.sh /tmp/setup_and_init.sh
 RUN chmod +x /tmp/setup_and_init.sh
 
