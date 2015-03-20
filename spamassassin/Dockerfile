@@ -5,7 +5,8 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update
 RUN apt-get install -y spamassassin
 
-RUN useradd -g spamd -s /bin/false -d /var/log/spamassassin spamd && \
+RUN groupadd spamd && \
+    useradd -g spamd -s /bin/false -d /var/log/spamassassin spamd && \
     mkdir -p /var/log/spamassassin && \
     chown -R spamd:spamd /var/log/spamassassin
 
