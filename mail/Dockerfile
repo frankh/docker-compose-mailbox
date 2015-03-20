@@ -3,8 +3,10 @@ FROM phusion/baseimage:latest
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
-RUN apt-get install -y postfix postfix-mysql dovecot-core dovecot-imapd dovecot-pop3d dovecot-lmtpd dovecot-mysql dovecot-sieve dovecot-managesieved
-RUN apt-get install -y mysql-client-core-5.6
+RUN apt-get install -y postfix postfix-mysql dovecot-core \
+                       dovecot-imapd dovecot-pop3d dovecot-lmtpd \
+                       dovecot-mysql dovecot-sieve dovecot-managesieved \
+                       mysql-client-core-5.6 spamc
 
 ADD dovecot/dovecot.sh .
 RUN mkdir /etc/service/dovecot && \

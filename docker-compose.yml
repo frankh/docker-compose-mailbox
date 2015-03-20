@@ -5,6 +5,7 @@ mail:
   links:
     - mysql
     - opendkim
+    - spamassassin
   volumes:
     - "data/certs:/etc/certs"
   volumes_from:
@@ -39,6 +40,11 @@ webserver:
     - mysql
     - memcache
     - mail
+
+spamassassin:
+  build: spamassassin
+  expose:
+    - "783"
 
 memcache:
   build: memcache
