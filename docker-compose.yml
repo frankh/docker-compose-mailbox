@@ -53,6 +53,8 @@ memcache:
 
 mysql:
   build: mysql
+  environment:
+    - "MYSQL_ROOT_PASSWORD=password"
   env_file:
     - settings.env
   volumes:
