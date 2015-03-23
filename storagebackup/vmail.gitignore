@@ -1,2 +1,6 @@
 *.log
+*.log.*
 *.cache
+*.cache.*
+*.index
+*.index.*
