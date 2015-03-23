@@ -1,4 +1,4 @@
-FROM mysql
+FROM mariadb
 
 ENV MYSQL_ROOT_PASSWORD password
 
