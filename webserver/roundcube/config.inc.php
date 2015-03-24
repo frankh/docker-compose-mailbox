@@ -71,7 +71,7 @@ $config['imap_auth_type'] = "CHECK";
 // PLUGINS
 // ----------------------------------
 // List of active plugins (in plugins/ directory)
-$config['plugins'] = array('archive', 'filesystem_attachments', 'hide_blockquote');
+$config['plugins'] = array('archive', 'zipdownload', 'filesystem_attachments', 'hide_blockquote');
 
 // the default locale setting (leave empty for auto-detection)
 // RFC1766 formatted language name like en_US, de_DE, de_CH, fr_FR, pt_BR
@@ -94,6 +94,8 @@ $config['mime_param_folding'] = 1;
 // in the session record (and the client cookie if remember password is enabled).
 // please provide a string of exactly 24 chars.
 $config['des_key'] = '%RANDOM_DES_KEY%';
+
+$config['session_lifetime'] = 60;
 // ----------------------------------
 // MEMCACHE
 // ----------------------------------
