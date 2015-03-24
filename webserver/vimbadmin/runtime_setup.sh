@@ -7,6 +7,9 @@ sed -i -e "s/%VIMBADMIN_PASSWORD_SALT%/${VIMBADMIN_PASSWORD_SALT}/g" ${vimbadmin
 sed -i -e "s/%VIMBADMIN_DOMAIN%/${VIMBADMIN_DOMAIN}/g" ${vimbadmin_install_path}/application/configs/application.ini
 sed -i -e "s/%VIMBADMIN_SUPERUSER%/${VIMBADMIN_SUPERUSER}/g" ${vimbadmin_install_path}/application/configs/application.ini
 sed -i -e "s/%VIMBADMIN_DOMAIN%/${VIMBADMIN_DOMAIN}/g" ${vimbadmin_install_path}/application/configs/application.ini
+sed -i -e "s/%MAIL_DOMAIN%/${MAIL_DOMAIN}/g" ${vimbadmin_install_path}/application/configs/application.ini
+sed -i -e "s/%MAIL_MX_DOMAIN%/${MAIL_MX_DOMAIN}/g" ${vimbadmin_install_path}/application/configs/application.ini
+sed -i -e "s/%MAIL_POSTMASTER%/${MAIL_POSTMASTER}/g" ${vimbadmin_install_path}/application/configs/application.ini
 
 # DB SETUP
 MAX_TIMEOUTS=0

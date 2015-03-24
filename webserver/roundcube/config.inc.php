@@ -74,7 +74,7 @@ $config['smtp_pass'] = '%p';
 // PLEASE DO NOT LINK TO THE ROUNDCUBE.NET WEBSITE HERE!
 $config['support_url'] = '';
 
-$config['imap_auth_type'] = "PLAIN";
+$config['imap_auth_type'] = "CHECK";
 // ----------------------------------
 // PLUGINS
 // ----------------------------------
