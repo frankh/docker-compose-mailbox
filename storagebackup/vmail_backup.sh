@@ -7,5 +7,5 @@ rm -f /var/vmail/.git/index.lock
 git add . --all
 git commit -m 'Backup commit'
 echo "Committed changes - archiving..."
-git archive master | gzip > /backup/vmail_backup-$(date +"%Y-%m-%d_%H:%M").tar.gz
+rm -f /var/vmail/.git/index.lock && git archive master | gzip > /backup/vmail_backup-$(date +"%Y-%m-%d_%H:%M").tar.gz
 echo "Done"
