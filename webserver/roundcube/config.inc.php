@@ -35,14 +35,6 @@ $config['default_host'] = 'imaps://mail';
 // TCP port used for IMAP connections
 $config['default_port'] = 993;
 
-// Validate SSL using our cert as the CA file
-$config['imap_conn_options'] = array(
- 'ssl'         => array(
-    'verify_peer'  => true,
-    'verify_depth' => 3,
-    'cafile'       => '/etc/certs/mail.cert',
-  ),
-);
 // ----------------------------------
 // SMTP
 // ----------------------------------
