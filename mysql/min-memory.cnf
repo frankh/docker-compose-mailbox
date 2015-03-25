@@ -1,20 +1,20 @@
 [mysqld]
-innodb_buffer_pool_size = 5M
-innodb_log_buffer_size = 256K
+innodb_buffer_pool_size = 16M
+innodb_log_buffer_size = 1M
 
 max_connections = 10
-key_buffer_size = 1000000
-innodb_ft_cache_size = 1600000
-innodb_ft_total_cache_size = 32000000
+key_buffer_size = 10M
+innodb_ft_cache_size = 2M
+innodb_ft_total_cache_size = 32M
 thread_stack = 131072
 sort_buffer_size = 32K
-read_buffer_size = 8200
+read_buffer_size = 16k
 read_rnd_buffer_size = 8200
-max_heap_table_size = 16K
-tmp_table_size = 16K
+max_heap_table_size = 64k
+tmp_table_size = 1M
 bulk_insert_buffer_size = 1M
 join_buffer_size = 128K
-net_buffer_length = 1K
+net_buffer_length = 16K
 innodb_sort_buffer_size = 64K
-binlog_cache_size = 4K
-binlog_stmt_cache_size = 4K
+binlog_cache_size = 16K
+binlog_stmt_cache_size = 16K
