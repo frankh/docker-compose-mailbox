@@ -59,7 +59,7 @@ unless roundcube_backup
     puts "Invalid selection"
     exit 1
   end
-  roundcube_backup = vmail_backups[choice]
+  roundcube_backup = roundcube_backups[choice]
 end
 unless vimbadmin_backup
   vimbadmin_backups = Dir["data/backup/db_vimbadmin_backup*.sql"].sort.reverse
@@ -76,7 +76,7 @@ unless vimbadmin_backup
     puts "Invalid selection"
     exit 1
   end
-  vimbadmin_backup = vmail_backups[choice]
+  vimbadmin_backup = vimbadmin_backups[choice]
 end
 puts "Using vmail backup \"#{vmail_backup}\""
 puts "Using roundcube backup \"#{roundcube_backup}\""
