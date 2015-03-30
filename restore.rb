@@ -87,7 +87,14 @@ exit 1 unless storage_box
 puts "Found storage box '#{storage_box}'"
 print "\nReady to restore, continue? <y/N>"
 exit 1 unless STDIN.gets.chomp.downcase == "y"
+
+puts "Restoring mail files..."
 `docker exec -i #{storage_box} tar -xzv -C /var/vmail < #{vmail_backup}`
+puts "Fixing permissions..."
+`docker exec -i #{storage_box} chown -R vmail:vmail /var/vmail`
+puts "Restoring roundcube DB..."
 `docker exec -i #{storage_box} mysql -u roundcube -ppassword -h mysql roundcube < #{roundcube_backup}`
+puts "Restoring vimbadmin DB..."
 `docker exec -i #{storage_box} mysql -u vimbadmin -ppassword -h mysql vimbadmin < #{vimbadmin_backup}`
+puts "Done!"
 
