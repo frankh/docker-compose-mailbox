@@ -1,5 +1,5 @@
 #!/usr/bin/ruby
-storage_box = `docker-compose ps | grep _storagebackup_ | cut -d' ' -f1`
+storage_box = `docker-compose ps | grep _storagebackup_ | cut -d' ' -f1`.chomp
 
 puts "Found storage box '#{storage_box}', creating backups in data/backups..."
 
