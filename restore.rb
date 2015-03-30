@@ -82,8 +82,8 @@ puts "Using vmail backup \"#{vmail_backup}\""
 puts "Using roundcube backup \"#{roundcube_backup}\""
 puts "Using vimbadmin backup \"#{vimbadmin_backup}\""
 
-storage_box = `set -o pipefail && docker-compose ps | grep _storagebackup_ | cut -d' ' -f1`.chomp
-exit 1 unless $?.success?
+storage_box = `docker-compose ps | grep _storagebackup_ | cut -d' ' -f1`.chomp
+exit 1 unless storage_box
 puts "Found storage box '#{storage_box}'"
 print "\nReady to restore, continue? <Y/n>"
 exit 1 unless STDIN.gets.chomp.downcase == "n"
