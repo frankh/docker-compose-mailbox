@@ -85,8 +85,8 @@ puts "Using vimbadmin backup \"#{vimbadmin_backup}\""
 storage_box = `docker-compose ps | grep _storagebackup_ | cut -d' ' -f1`.chomp
 exit 1 unless storage_box
 puts "Found storage box '#{storage_box}'"
-print "\nReady to restore, continue? <Y/n>"
-exit 1 unless STDIN.gets.chomp.downcase == "n"
+print "\nReady to restore, continue? <y/N>"
+exit 1 if STDIN.gets.chomp.downcase == "y"
 `docker exec -i #{storage_box} tar -xzv -C /var/vmail < #{vmail_backup}`
 `docker exec -i #{storage_box} mysql -u roundcube -ppassword -h mysql roundcube < #{roundcube_backup}`
 `docker exec -i #{storage_box} mysql -u vimbadmin -ppassword -h mysql vimbadmin < #{vimbadmin_backup}`
