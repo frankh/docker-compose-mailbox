@@ -93,8 +93,8 @@ puts "Restoring mail files..."
 puts "Fixing permissions..."
 `docker exec -i #{storage_box} chown -R vmail:vmail /var/vmail`
 puts "Restoring roundcube DB..."
-`docker exec -e "MYSQL_PWD=password" -i #{storage_box} mysql -u roundcube -h mysql roundcube < #{roundcube_backup}`
+`docker exec -e "MYSQL_PWD=password" -i #{storage_box} mysql --login-path=roundcube roundcube < #{roundcube_backup}`
 puts "Restoring vimbadmin DB..."
-`docker exec -e "MYSQL_PWD=password" -i #{storage_box} mysql -u vimbadmin -h mysql vimbadmin < #{vimbadmin_backup}`
+`docker exec -e "MYSQL_PWD=password" -i #{storage_box} mysql --login-path=vimbadmin vimbadmin < #{vimbadmin_backup}`
 puts "Done!"
 
