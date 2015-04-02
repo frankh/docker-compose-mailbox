@@ -42,7 +42,7 @@ required_score 5.0
 #   Bayesian classifier auto-learning (default: 1)
 #
 # bayes_auto_learn 1
-
+bayes_path /var/spamassassin/bayes_db
 
 #   Set headers which may provide inappropriate cues to the Bayesian
 #   classifier

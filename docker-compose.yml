@@ -75,3 +75,4 @@ storagebackup:
   volumes:
     - "/var/vmail"
     - "data/backup:/backup"
+    - "/var/spamassassin"
