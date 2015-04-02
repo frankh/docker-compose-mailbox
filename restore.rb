@@ -90,6 +90,8 @@ exit 1 unless STDIN.gets.chomp.downcase == "y"
 
 puts "(1/4) Restoring mail files..."
 `docker exec -i #{storage_box} tar -xzv -C /var/vmail < #{vmail_backup}`
+`docker exec -i #{storage_box} rm /var/vmail/*/*/*.cache`
+`docker exec -i #{storage_box} rm /var/vmail/*/*/*.index`
 puts "(2/4) Fixing permissions..."
 `docker exec -i #{storage_box} chown -R vmail:vmail /var/vmail`
 puts "(3/4) Restoring roundcube DB..."
