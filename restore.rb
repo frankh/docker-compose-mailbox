@@ -56,6 +56,7 @@ unless roundcube_backup
   choice = STDIN.gets.chomp.to_i
   if choice > roundcube_backups.first(5).length || choice < 1
     puts "Invalid selection - not skipping roundcube restore"
+    roundcube_backups = {}
   end
   roundcube_backup = roundcube_backups[choice]
 end
@@ -72,6 +73,7 @@ unless vimbadmin_backup
   choice = STDIN.gets.chomp.to_i
   if choice > vimbadmin_backups.first(5).length || choice < 1
     puts "Invalid selection - not skipping vimbadmin restore"
+    vimbadmin_backups = {}
   end
   vimbadmin_backup = vimbadmin_backups[choice]
 end
