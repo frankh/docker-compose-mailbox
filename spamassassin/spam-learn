@@ -1,3 +1,4 @@
 #!/bin/sh
 nice -n 19 sa-learn --no-sync --ham /var/vmail/*/
 nice -n 19 sa-learn --no-sync --spam /var/vmail/*/*/Junk
+nice -n 19 sa-learn --sync
