@@ -45,6 +45,8 @@ spamassassin:
   build: spamassassin
   expose:
     - "783"
+  volumes_from:
+    - storagebackup
 
 memcache:
   build: memcache
