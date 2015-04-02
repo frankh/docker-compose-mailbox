@@ -41,7 +41,7 @@ unless vmail_backup
   if choice > vmail_backups.first(5).length || choice < 1
     puts "Invalid selection - not skipping vmail restore"
   end
-  vmail_backup = vmail_backups[choice]
+  vmail_backup = vmail_backups[choice-1]
 end
 unless roundcube_backup
   roundcube_backups = Dir["data/backup/db_roundcube_backup*.sql"].sort.reverse
@@ -58,7 +58,7 @@ unless roundcube_backup
     puts "Invalid selection - not skipping roundcube restore"
     roundcube_backups = {}
   end
-  roundcube_backup = roundcube_backups[choice]
+  roundcube_backup = roundcube_backups[choice-1]
 end
 unless vimbadmin_backup
   vimbadmin_backups = Dir["data/backup/db_vimbadmin_backup*.sql"].sort.reverse
@@ -75,7 +75,7 @@ unless vimbadmin_backup
     puts "Invalid selection - not skipping vimbadmin restore"
     vimbadmin_backups = {}
   end
-  vimbadmin_backup = vimbadmin_backups[choice]
+  vimbadmin_backup = vimbadmin_backups[choice-1]
 end
 puts "Using vmail backup \"#{vmail_backup}\""
 puts "Using roundcube backup \"#{roundcube_backup}\""
@@ -89,8 +89,8 @@ exit 1 unless STDIN.gets.chomp.downcase == "y"
 
 puts "(1/4) Restoring mail files..."
 `docker exec -i #{storage_box} tar -xzv -C /var/vmail < #{vmail_backup}`
-`docker exec -i #{storage_box} rm /var/vmail/*/*/*.cache`
-`docker exec -i #{storage_box} rm /var/vmail/*/*/*.index`
+`docker exec -i #{storage_box} rm /var/vmail/\\*/\\*/\\*.cache`
+`docker exec -i #{storage_box} rm /var/vmail/\\*/\\*/\\*.index`
 puts "(2/4) Fixing permissions..."
 `docker exec -i #{storage_box} chown -R vmail:vmail /var/vmail`
 if roundcube_backup
