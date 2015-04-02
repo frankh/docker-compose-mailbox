@@ -16,5 +16,6 @@ RUN mkdir /etc/service/spamd && \
     chmod +x /etc/service/spamd/run
 
 ADD local.cf /etc/spamassassin/local.cf
+ADD spam-learn /etc/cron.daily/spam-learn
 
 CMD ["/sbin/my_init"]
