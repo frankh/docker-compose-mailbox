@@ -39,8 +39,7 @@ unless vmail_backup
   end
   choice = STDIN.gets.chomp.to_i
   if choice > vmail_backups.first(5).length || choice < 1
-    puts "Invalid selection"
-    exit 1
+    puts "Invalid selection - not skipping vmail restore"
   end
   vmail_backup = vmail_backups[choice]
 end
@@ -56,8 +55,7 @@ unless roundcube_backup
   end
   choice = STDIN.gets.chomp.to_i
   if choice > roundcube_backups.first(5).length || choice < 1
-    puts "Invalid selection"
-    exit 1
+    puts "Invalid selection - not skipping roundcube restore"
   end
   roundcube_backup = roundcube_backups[choice]
 end
@@ -73,8 +71,7 @@ unless vimbadmin_backup
   end
   choice = STDIN.gets.chomp.to_i
   if choice > vimbadmin_backups.first(5).length || choice < 1
-    puts "Invalid selection"
-    exit 1
+    puts "Invalid selection - not skipping vimbadmin restore"
   end
   vimbadmin_backup = vimbadmin_backups[choice]
 end
@@ -94,9 +91,13 @@ puts "(1/4) Restoring mail files..."
 `docker exec -i #{storage_box} rm /var/vmail/*/*/*.index`
 puts "(2/4) Fixing permissions..."
 `docker exec -i #{storage_box} chown -R vmail:vmail /var/vmail`
-puts "(3/4) Restoring roundcube DB..."
-`docker exec -i #{storage_box} mysql -u roundcube -ppassword -h mysql roundcube < #{roundcube_backup} 2>/dev/null`
-puts "(4/4) Restoring vimbadmin DB..."
-`docker exec -i #{storage_box} mysql -u vimbadmin -ppassword -h mysql vimbadmin < #{vimbadmin_backup} 2>/dev/null`
+if roundcube_backup
+  puts "(3/4) Restoring roundcube DB..."
+  `docker exec -i #{storage_box} mysql -u roundcube -ppassword -h mysql roundcube < #{roundcube_backup} 2>/dev/null`
+end
+if vimbadmin_backup
+  puts "(4/4) Restoring vimbadmin DB..."
+  `docker exec -i #{storage_box} mysql -u vimbadmin -ppassword -h mysql vimbadmin < #{vimbadmin_backup} 2>/dev/null`
+end
 puts "Done!"
 
