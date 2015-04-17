@@ -36,12 +36,12 @@ required_score 4.0
 
 #   Use Bayesian classifier (default: 1)
 #
-# use_bayes 1
+use_bayes 1
 
 
 #   Bayesian classifier auto-learning (default: 1)
 #
-# bayes_auto_learn 1
+bayes_auto_learn 1
 bayes_path /var/spamassassin/bayes_db
 
 #   Set headers which may provide inappropriate cues to the Bayesian
