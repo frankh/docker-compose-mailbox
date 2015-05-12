@@ -40,7 +40,6 @@ RUN git clone https://github.com/roundcube/roundcubemail.git ${roundcube_install
     composer install --no-dev && \
     rm -rf ${roundcube_install_path}/.git
 
-
 ADD setup_and_init.sh /tmp/setup_and_init.sh
 RUN chmod +x /tmp/setup_and_init.sh
 
@@ -59,6 +58,7 @@ RUN mv ${vimbadmin_install_path}/public/.htaccess.dist ${vimbadmin_install_path}
 RUN cp /tmp/vimbadmin/vimbadmin.nginx.conf /etc/nginx/sites-enabled/vimbadmin
 RUN cp /tmp/roundcube/roundcube.nginx.conf /etc/nginx/sites-enabled/roundcube
 RUN cp /tmp/roundcube/config.inc.php ${roundcube_install_path}/config/config.inc.php
+RUN cp /tmp/roundcube/password.config.inc.php ${roundcube_install_path}/plugins/password/config.inc.php
 RUN cp /tmp/vimbadmin/application.ini ${vimbadmin_install_path}/application/configs/application.ini
 
 RUN chown -R www-data:www-data /var/www/
