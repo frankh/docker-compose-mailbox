@@ -7,7 +7,7 @@ mail:
     - opendkim
     - spamassassin
   volumes:
-    - "data/certs:/etc/certs"
+    - "./data/certs:/etc/certs"
   volumes_from:
     - storagebackup
   ports:
@@ -23,7 +23,7 @@ opendkim:
   expose:
     - "8891"
   volumes:
-    - "data/certs:/etc/certs"
+    - "./data/certs:/etc/certs"
 
 # If you only want the mail server and no webmail/admin simply remove webserver and memcache
 webserver:
@@ -33,7 +33,7 @@ webserver:
   ports:
     - "80:80"
   volumes:
-    - "data/certs:/etc/certs"
+    - "./data/certs:/etc/certs"
   volumes_from:
     - storagebackup
   links:
@@ -60,7 +60,7 @@ mysql:
   env_file:
     - settings.env
   volumes:
-    - "data/backup:/backup"
+    - "./data/backup:/backup"
   #   - "data/mysql:/var/lib/mysql"
   expose:
     - "3306"
@@ -74,5 +74,5 @@ storagebackup:
     - mysql
   volumes:
     - "/var/vmail"
-    - "data/backup:/backup"
+    - "./data/backup:/backup"
     - "/var/spamassassin"

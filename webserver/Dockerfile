@@ -34,8 +34,10 @@ RUN git clone https://github.com/opensolutions/vimbadmin.git ${vimbadmin_install
 
 ENV roundcube_install_path /var/www/roundcube
 RUN git clone https://github.com/roundcube/roundcubemail.git ${roundcube_install_path} && \
+    echo -n | openssl s_client -connect git.kolab.org:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'| tee '/usr/local/share/ca-certificates/git_kolab_org.crt' && \
+    update-ca-certificates && \
     cd ${roundcube_install_path} && \
-    git checkout 1.1.0 && \
+    git checkout 1.1.4 && \
     mv ${roundcube_install_path}/composer.json-dist ${roundcube_install_path}/composer.json && \
     composer install --no-dev && \
     rm -rf ${roundcube_install_path}/.git
