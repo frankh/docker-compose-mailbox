@@ -87,3 +87,5 @@ Backups will be created every 24 hours for the roundcube/vimbadmin databases and
 
 They will be stored in ./data/backup and deleted after 1 week - it's recommended to automatically back these up on a
 separate server.
+
+You can manually create a backup by running `ruby backup.rb`, and restore a backup with `ruby restore.rb`
