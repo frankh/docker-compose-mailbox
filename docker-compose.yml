@@ -60,7 +60,6 @@ mysql:
     - settings.env
   volumes:
     - "./data/backup:/backup"
-  #   - "data/mysql:/var/lib/mysql"
   expose:
     - "3306"
 
