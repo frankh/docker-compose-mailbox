@@ -24,8 +24,9 @@ read_setting("Vimbadmin domain", "VIMBADMIN_DOMAIN", "vimbadmin.#{SETTINGS["MAIL
 read_setting("Vimbadmin superuser", "VIMBADMIN_SUPERUSER", "admin@#{SETTINGS["MAIL_DOMAIN"]}")
 
 read_setting("Vimbadmin superuser password", "VIMBADMIN_SUPERUSER_PASSWORD", "#{`openssl rand -base64 16`.chomp}")
-read_setting("Vimbadmin remember_me salt", "VIMBADMIN_REMEMBERME_SALT", "#{`openssl rand -base64 24`.chomp}")
-read_setting("Vimbadmin password salt", "VIMBADMIN_PASSWORD_SALT", "#{`openssl rand -base64 24`.chomp}")
+
+SETTINGS["VIMBADMIN_REMEMBERME_SALT"] = "#{`openssl rand -base64 24`.chomp}"
+SETTINGS["VIMBADMIN_PASSWORD_SALT"] = "#{`openssl rand -base64 24`.chomp}"
 
 read_setting("Roundcube domain", "ROUNDCUBE_DOMAIN", "webmail.#{SETTINGS["MAIL_DOMAIN"]}")
 
