@@ -28,7 +28,7 @@ RUN mkdir /etc/service/php-fpm && \
 ENV vimbadmin_install_path /var/www/vimbadmin
 RUN git clone https://github.com/opensolutions/vimbadmin.git ${vimbadmin_install_path} && \
     cd ${vimbadmin_install_path} && \
-    git checkout 3.0.11 && \
+    git checkout 3.0.15 && \
     composer install && \
     rm -rf ${vimbadmin_install_path}/.git
 
