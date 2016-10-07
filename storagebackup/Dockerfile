@@ -3,7 +3,7 @@ FROM phusion/baseimage:latest
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
-RUN apt-get install -y mysql-client-5.6 git gzip
+RUN apt-get install -y mysql-client-5.7 git gzip
 
 RUN groupadd -g 5000 vmail && \
     useradd -g vmail -u 5000 vmail -d /var/vmail && \

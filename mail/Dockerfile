@@ -6,7 +6,7 @@ RUN apt-get update
 RUN apt-get install -y postfix postfix-mysql dovecot-core \
                        dovecot-imapd dovecot-pop3d dovecot-lmtpd \
                        dovecot-mysql dovecot-sieve dovecot-managesieved \
-                       mysql-client-core-5.6 spamc
+                       mysql-client-core-5.7 spamc
 
 ADD dovecot/dovecot.sh .
 RUN mkdir /etc/service/dovecot && \
