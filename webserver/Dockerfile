@@ -37,7 +37,7 @@ RUN git clone https://github.com/roundcube/roundcubemail.git ${roundcube_install
     echo -n | openssl s_client -connect git.kolab.org:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'| tee '/usr/local/share/ca-certificates/git_kolab_org.crt' && \
     update-ca-certificates && \
     cd ${roundcube_install_path} && \
-    git checkout 1.1.4 && \
+    git checkout 1.1.6 && \
     mv ${roundcube_install_path}/composer.json-dist ${roundcube_install_path}/composer.json && \
     composer install --no-dev && \
     rm -rf ${roundcube_install_path}/.git
