@@ -1,10 +1,10 @@
-FROM phusion/baseimage:0.9.19
+FROM phusion/baseimage:0.9.15
 
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
 RUN apt-get install -y php5 php5-cgi php5-mcrypt php5-memcache php5-json php5-mysql php-gettext libapache2-mod-php5 \
-                       git subversion nginx-extras php5-fpm mysql-client-core-5.7
+                       git subversion nginx-extras php5-fpm mysql-client-core-5.6
 
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
